@@ -1,0 +1,15 @@
+artifact_uri: file:///home/apolol92/projects/rllib_tutorial/deep_rl_trainer/mlruns/0/43e0a30f48d3413bafcb826cff927223/artifacts
+end_time: 1652106134258
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 43e0a30f48d3413bafcb826cff927223
+run_uuid: 43e0a30f48d3413bafcb826cff927223
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1652106132954
+status: 4
+tags: []
+user_id: apolol92
