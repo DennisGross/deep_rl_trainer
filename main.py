@@ -18,11 +18,12 @@ if __name__ == "__main__":
             },
             #"lr": tune.grid_search([0.01, 0.001, 0.0001]),
         }
-    if command_line_arguments['env']=="env":
+    try:
         env_module = importlib.import_module(command_line_arguments['env'])
         config["env"] = env_module.MyEnvironment
-    else:
+    except:
         config["env"] = command_line_arguments['env']
+        
     if command_line_arguments['checkpoint_path']=="/":
         command_line_arguments['checkpoint_path'] = ""
 
