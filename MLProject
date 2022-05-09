@@ -1,0 +1,17 @@
+name: deep_rl_training
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      checkpoint_path: {type: path, default: "/"}
+      env: {type: string, default: "env"}
+      rl: {type: string, default: "PPO"}
+      reward_threshold: {type: float, default: 4}
+      eval_interval: {type: float, default: 50}
+      # Technical
+      num_workers: {type: float, default: 4}
+      num_envs_per_worker: {type: float, default: 4}
+    command: "python main.py --checkpoint_path={checkpoint_path} --env={env} --rl={rl} --reward_threshold={reward_threshold} --eval_interval={eval_interval} --num_workers={num_workers} --num_envs_per_worker={num_envs_per_worker}"
+  

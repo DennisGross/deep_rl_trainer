@@ -1,0 +1,8 @@
+name: deep_rl_training
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - ray
