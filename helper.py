@@ -35,6 +35,8 @@ def get_arguments() -> Dict[str, Any]:
     arg_parser.add_argument('--eval_interval', help='Number of environments per worker', type=int, default=10)
     # Technical
     arg_parser.add_argument('--tracking_uri', help='The tracking URI for where to manage experiments and runs. This can either be a local file path or a remote server. ', type=str, default='')
+    arg_parser.add_argument('--ray_head', help='', type=str, default='')
+    
     arg_parser.add_argument('--num_workers', help='Number of Workers', type=int, default=4)
     arg_parser.add_argument('--num_envs_per_worker', help='Number of environments per worker', type=int, default=2)
     #arg_parser.add_argument('--interval', help='Interval of Ticker data', type=str, default='')
@@ -52,7 +54,6 @@ def get_checkpoint_path(run_id, tracking_uri):
         client._tracking_client.download_artifacts(run_id, '.', TMP_DIR)
         all_sub_paths = glob.glob(TMP_DIR + "/*")
         for path in all_sub_paths:
-            #print(path)
             if path.startswith(TMP_DIR + "/checkpoint_"):
                 potential_checkpoints = glob.glob(path+"/*")
                 for check in potential_checkpoints:

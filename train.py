@@ -8,8 +8,10 @@ from ray.tune.integration.mlflow import MLflowLoggerCallback
 
 if __name__ == "__main__":
     command_line_arguments = get_arguments()
-
-    ray.init()
+    if command_line_arguments['ray_head']!="":
+        ray.init(address=command_line_arguments['ray_head'])
+    else:
+        ray.init()
     config={
             "evaluation_interval": command_line_arguments['eval_interval'],
             "num_workers": command_line_arguments['num_workers'],

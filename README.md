@@ -14,3 +14,12 @@ Pass the following argument:
 # Deploy RL Agent
 
 `mlflow run https://github.com/DennisGross/deep_rl_trainer -e deploy -P run_id=RUN_ID_FROM_MLFLOW`
+
+# Ray Cluster Setup
+Ray Head-Node:
+`ray start --head --include-dashboard=true`
+
+Connect Worker-Nodes to cluster:
+
+`ray start --address='HEAD_NODE_IP:6379`
+
