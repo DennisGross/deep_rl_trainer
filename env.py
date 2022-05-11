@@ -1,3 +1,7 @@
+"""
+RLlib Tutorial-Code from: https://www.youtube.com/watch?v=y2KjC7W9nsI&t=5768s&ab_channel=Anyscale
+"""
+
 import gym
 from gym.spaces import Discrete, Box
 import random
@@ -9,7 +13,6 @@ class MyEnvironment(gym.Env):
         self.action_space = Discrete(3)
         self.observation_space = Box(low=-1., high=1., shape=(2,), dtype=np.float64)
         self.current_context = None
-        print(env_config)
         self.rewards_for_context = {
             -1. : [-10, 0, 10],
             1. : [10, 0, -10]
