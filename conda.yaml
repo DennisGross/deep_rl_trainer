@@ -2,9 +2,12 @@ name: deep_rl_trainer
 channels:
   - defaults
 dependencies:
-  - python=3.8.13
+  - python=3.8.10
   - pip
   - pip:
-    - ray=1.12
+    - ray==1.12
+    - ray[tune]
+    - ray[default]
     - mlflow==1.25.1
-    - gym
+    - pygame
+    - gym==0.15.3

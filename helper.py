@@ -68,7 +68,8 @@ def get_checkpoint_path(run_id, tracking_uri):
 def create_env(env_id, env_config):
     try:
         return env_id, gym.make(env_id)
-    except:
+    except Exception as msg:
+        print(msg)
         env_module = importlib.import_module(env_id)
         return env_module.MyEnvironment, env_module.MyEnvironment(env_config)
 
