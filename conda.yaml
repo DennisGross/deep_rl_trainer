@@ -5,9 +5,13 @@ dependencies:
   - python=3.8.10
   - pip
   - pip:
+    - tensorflow
+    - torch
     - ray==1.12
     - ray[tune]
     - ray[default]
     - mlflow==1.25.1
     - pygame
     - gym==0.15.3
+    - dm_tree
+    - scikit-image
