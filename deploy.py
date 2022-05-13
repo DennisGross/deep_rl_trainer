@@ -1,6 +1,7 @@
 from helper import *
 import ray.rllib.agents.ppo as ppo
-
+import os
+from numpy import savetxt
 
 
 
@@ -23,6 +24,10 @@ if __name__ == "__main__":
     for epoch in range(0,command_line_arguments['eval_interval']):
         obs = env.reset()
         while not done:
+            if command_line_arguments['state_collection_path']!="/":
+                print(obs.shape)
+                state_path = os.path.join(command_line_arguments['state_collection_path'], get_random_string(250))
+                savetxt(state_path, obs, delimiter=',')
             action = agent.compute_action(obs)
             obs, reward, done, info = env.step(action)
             episode_reward += reward

@@ -8,6 +8,10 @@ import os
 import shutil
 import importlib
 import gym
+import random
+import string
+
+
 
 TMP_DIR = './tmp'
 TUNE_DIR = 'tune_dir'
@@ -27,6 +31,7 @@ def get_arguments() -> Dict[str, Any]:
     arg_parser.add_argument('--env_config', help='Environment Config', type=str,
                             default='')
     arg_parser.add_argument('--rl', help='RL Algorithm', type=str, default='DQN')
+
     # Neural Network
     arg_parser.add_argument('--fcnet_activation', help='Activation Function', type=str, default='tanh')
     arg_parser.add_argument('--fcnet_hiddens', help='Hidden Layer Neurons', type=str, default='100,100')
@@ -39,7 +44,7 @@ def get_arguments() -> Dict[str, Any]:
     
     arg_parser.add_argument('--num_workers', help='Number of Workers', type=int, default=4)
     arg_parser.add_argument('--num_envs_per_worker', help='Number of environments per worker', type=int, default=2)
-    #arg_parser.add_argument('--interval', help='Interval of Ticker data', type=str, default='')
+    arg_parser.add_argument('--state_collection_path', help='Path to the state collection folder', type=str, default='')
 
     args, _ = arg_parser.parse_known_args(sys.argv)
     return vars(args)
@@ -87,6 +92,13 @@ def parse_hidden_layer_neurons(fcnet_hiddens):
     for hidden in fcnet_hiddens.split(","):
         hiddens.append(int(hidden))
     return hiddens
+
+def get_random_string(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return result_str
+
 
 def clean_up():
     try:
