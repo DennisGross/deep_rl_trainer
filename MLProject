@@ -24,7 +24,7 @@ entry_points:
     command: "python train.py --run_id={run_id} --env={env} --env_config={env_config} --rl={rl} --fcnet_activation={fcnet_activation} --fcnet_hiddens={fcnet_hiddens} --reward_threshold={reward_threshold} --eval_interval={eval_interval} --tracking_uri={tracking_uri} --ray_head={ray_head} --num_workers={num_workers} --num_envs_per_worker={num_envs_per_worker}"
   deploy:
     parameters:
-      run_id: {type: string, default: "601aca34ed994736a442f49dc642da40"}
+      run_id: {type: string, default: ""}
       env: {type: string, default: "CartPole-v0"}
       env_config: {type: string, default: ""}
       rl: {type: string, default: "PPO"}
