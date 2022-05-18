@@ -61,7 +61,7 @@ if __name__ == "__main__":
             if command_line_arguments['state_collection_path']!="/":
                 obs_old_filepath, obs_old_filename = get_new_random_filename(command_line_arguments['state_collection_path'], FILE_LENGTH)
                 obs_filepath, obs_filename = get_new_random_filename(command_line_arguments['state_collection_path'], FILE_LENGTH)
-                obs_old_filepath = obs_old_filepath+ "_"+ str(action)+"_"+str(reward) + "_" + str(obs_filename)
+                obs_old_filepath = obs_old_filepath+ "_"+ str(action)+"_"+str(reward) + "_" + str(obs_filename) + "_" + str(done)
                 savetxt(obs_old_filepath, obs, delimiter=',')
                 savetxt(obs_filepath, obs, delimiter=',')
                 
