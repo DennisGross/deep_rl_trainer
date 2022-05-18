@@ -50,6 +50,8 @@ def get_arguments() -> Dict[str, Any]:
     args, _ = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
+
+
 def get_checkpoint_path(run_id, tracking_uri):
     checkpoint_path = ''
     if run_id!="":
