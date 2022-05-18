@@ -3,6 +3,8 @@ import sys
 from typing import Dict, Any
 import mlflow
 from mlflow.tracking import MlflowClient
+import ray.rllib.agents.ppo as ppo
+import ray.rllib.agents.dqn as dqn
 import glob
 import os
 import shutil
@@ -112,6 +114,14 @@ def parse_activation_function(command_line_arguments):
         model = json.loads(model_str)
         return model['fcnet_activation']
     return command_line_arguments['fcnet_activation']
+
+def parse_rl(command_line_arguments):
+    mlflow.set_tracking_uri(command_line_arguments['tracking_uri'])
+    tracking_uri = mlflow.get_tracking_uri()
+    run = mlflow.get_run(command_line_arguments['run_id']).to_dictionary()
+    print(run['data']['tags']['trial_name'].split('_')[0])
+    rl = run['data']['tags']['trial_name'].split('_')[0]
+    return rl
         
 
 def get_new_random_filename(state_collection_path, length):

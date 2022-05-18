@@ -1,5 +1,6 @@
 from helper import *
 import ray.rllib.agents.ppo as ppo
+import ray.rllib.agents.dqn as dqn
 from typing import Dict
 import os
 from numpy import savetxt
@@ -36,7 +37,14 @@ if __name__ == "__main__":
     #client = MlflowClient(tracking_uri=command_line_arguments['tracking_uri'])
     config = prepare_config(command_line_arguments)
     checkpoint_path = get_checkpoint_path(command_line_arguments['run_id'], command_line_arguments['tracking_uri'])
-    agent = ppo.PPOTrainer(config=config, env=env_class)
+    agent = None
+    rl = parse_rl(command_line_arguments)
+    if rl.lower() == "dqn":
+        agent = dqn.DQNTrainer(config=config, env=env_class)
+    elif rl.lower() == "ppo":
+        agent = ppo.PPOTrainer(config=config, env=env_class)
+    else:
+        NotImplementedError("RL Agent is not supported")
     agent.restore(checkpoint_path)
     for epoch in range(0,command_line_arguments['eval_interval']):
         episode_reward = 0
