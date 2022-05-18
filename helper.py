@@ -10,7 +10,7 @@ import importlib
 import gym
 import random
 import string
-
+import json
 
 
 TMP_DIR = './tmp'
@@ -90,11 +90,29 @@ def parse_env_config(env_config):
         config[key] = value
     return config
 
-def parse_hidden_layer_neurons(fcnet_hiddens):
+def parse_hidden_layer_neurons(command_line_arguments):
+    if command_line_arguments['run_id'] != "":
+        mlflow.set_tracking_uri(command_line_arguments['tracking_uri'])
+        tracking_uri = mlflow.get_tracking_uri()
+        print(mlflow.get_run(command_line_arguments['run_id']).to_dictionary()['data']['params']['model'])
+        model_str = mlflow.get_run(command_line_arguments['run_id']).to_dictionary()['data']['params']['model'].replace("'",'"')
+        model = json.loads(model_str)
+        print(model['fcnet_hiddens'], model['fcnet_hiddens'].__class__.__name__)
+        return model['fcnet_hiddens']
     hiddens = []
-    for hidden in fcnet_hiddens.split(","):
+    for hidden in command_line_arguments['fcnet_hiddens'].split(","):
         hiddens.append(int(hidden))
     return hiddens
+
+def parse_activation_function(command_line_arguments):
+    if command_line_arguments['run_id'] != "":
+        mlflow.set_tracking_uri(command_line_arguments['tracking_uri'])
+        tracking_uri = mlflow.get_tracking_uri()
+        model_str = mlflow.get_run(command_line_arguments['run_id']).to_dictionary()['data']['params']['model'].replace("'",'"')
+        model = json.loads(model_str)
+        return model['fcnet_activation']
+    return command_line_arguments['fcnet_activation']
+        
 
 def get_new_random_filename(state_collection_path, length):
     filename = get_random_string(length)

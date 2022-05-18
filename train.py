@@ -1,8 +1,6 @@
-from click import command
 import ray
 from ray import tune
 from helper import *
-import importlib
 from ray.tune.integration.mlflow import MLflowLoggerCallback
 
 
@@ -19,8 +17,8 @@ if __name__ == "__main__":
             #"num_gpus": 0,
             #"num_cpus": 1,
             'model': {
-                'fcnet_hiddens' : parse_hidden_layer_neurons(command_line_arguments['fcnet_hiddens']),
-                'fcnet_activation' : command_line_arguments['fcnet_hiddens']
+                'fcnet_hiddens' : parse_hidden_layer_neurons(command_line_arguments),
+                'fcnet_activation' : parse_activation_function(command_line_arguments)
             },
             
             "env_config": parse_env_config(command_line_arguments['env_config'])

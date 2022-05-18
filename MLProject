@@ -5,7 +5,7 @@ conda_env: conda.yaml
 entry_points:
   main:
     parameters:
-      run_id: {type: string, default: ""}
+      run_id: {type: string, default: "afe67cbe247b4d60afbce4f1cf1cea7b"}
       env: {type: string, default: "CartPole-v0"}
       env_config: {type: string, default: ""}
       rl: {type: string, default: "PPO"}
