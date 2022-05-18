@@ -8,6 +8,7 @@ import numpy as np
 import mlflow
 import os
 import json
+import random
 
 def prepare_config(command_line_arguments: Dict) -> Dict:
     """Prepare config from command line arguments
@@ -51,8 +52,11 @@ if __name__ == "__main__":
         done = False
         obs = env.reset()
         while not done:
-            action = agent.compute_action(obs)
-            obs_old = np.array(obs, copy=True)  
+            obs_old = np.array(obs, copy=True)
+            if random.random() <= command_line_arguments['state_collection_epsilon']:
+                action = agent.compute_action(obs)
+            else:
+                action = random.randint(0, env.action_space.n-1)
             obs, reward, done, info = env.step(action)
             if command_line_arguments['state_collection_path']!="/":
                 obs_old_filepath, obs_old_filename = get_new_random_filename(command_line_arguments['state_collection_path'], FILE_LENGTH)

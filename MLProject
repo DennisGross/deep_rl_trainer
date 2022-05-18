@@ -29,6 +29,7 @@ entry_points:
       env_config: {type: string, default: ""}
       eval_interval: {type: float, default: 5}
       state_collection_path: {type: path, default: "mydata"}
+      state_collection_epsilon: {type: float, default: 1}
       # Neural Network
       fcnet_activation: {type: string, default: "tanh"}
       fcnet_hiddens: {type: string, default: "100,100"}
@@ -36,5 +37,5 @@ entry_points:
       # Local Machine: http://localhost:5000
       # Remote Machine: http(s)://IP:PORT
       tracking_uri: {type: string, default: "http://0.0.0.0:5000"}
-    command: "python deploy.py --run_id={run_id} --env={env} --env_config={env_config} --fcnet_activation={fcnet_activation} --fcnet_hiddens={fcnet_hiddens} --eval_interval={eval_interval} --tracking_uri={tracking_uri} --state_collection_path={state_collection_path}"
+    command: "python deploy.py --run_id={run_id} --state_collection_epsilon={state_collection_epsilon} --env={env} --env_config={env_config} --fcnet_activation={fcnet_activation} --fcnet_hiddens={fcnet_hiddens} --eval_interval={eval_interval} --tracking_uri={tracking_uri} --state_collection_path={state_collection_path}"
   

@@ -48,7 +48,7 @@ def get_arguments() -> Dict[str, Any]:
     arg_parser.add_argument('--num_workers', help='Number of Workers', type=int, default=4)
     arg_parser.add_argument('--num_envs_per_worker', help='Number of environments per worker', type=int, default=2)
     arg_parser.add_argument('--state_collection_path', help='Path to the state collection folder', type=str, default='')
-
+    arg_parser.add_argument('--state_collection_epsilon', help='State Collection Epsilon', type=float, default=1)
     args, _ = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
