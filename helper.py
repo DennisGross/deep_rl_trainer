@@ -17,7 +17,8 @@ TMP_DIR = './tmp'
 TUNE_DIR = 'tune_dir'
 
 def get_arguments() -> Dict[str, Any]:
-    """Parses all the command line arguments
+    """
+    Parses all the command line arguments
     Returns:
         Dict[str, Any]: dictionary with the command line arguments as key and their assignment as value
     """
@@ -92,6 +93,15 @@ def parse_hidden_layer_neurons(fcnet_hiddens):
     for hidden in fcnet_hiddens.split(","):
         hiddens.append(int(hidden))
     return hiddens
+
+def get_new_random_filename(state_collection_path, length):
+    filename = get_random_string(length)
+    filepath = os.path.join(state_collection_path, filename)
+    while os.path.isfile(filepath):
+        filename = get_random_string(length)
+        filepath = os.path.join(state_collection_path, filename)
+    return filepath, filename
+
 
 def get_random_string(length):
     # choose from all lowercase letter
